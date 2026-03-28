@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="ProductVault.API/ProductVault.API.csproj" />
+  <Project Path="ProductVault.Application/ProductVault.Application.csproj" />
+  <Project Path="ProductVault.Domain/ProductVault.Domain.csproj" />
+  <Project Path="ProductVault.Infrastructure/ProductVault.Infrastructure.csproj" />
+  <Project Path="ProductVault.Tests/ProductVault.Tests.csproj" />
+</Solution>
