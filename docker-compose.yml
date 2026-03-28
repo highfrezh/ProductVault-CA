@@ -1,0 +1,32 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+
+  # ── PostgreSQL Database ──────────────────────────────
+  db:
+    image: postgres:16
+    container_name: productvault_db
+    environment:
+      POSTGRES_DB: ProductVaultDb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data   # data persists between restarts
+
+  # ── ProductVault API ─────────────────────────────────
+  api:
+    build: .
+    container_name: productvault_api
+    ports:
+      - "5000:8080"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__Default=Host=db;Database=ProductVaultDb;Username=postgres;Password=password
+      - ASPNETCORE_ENVIRONMENT=Development
+
+volumes:
+  pgdata:

@@ -25,4 +25,12 @@ app.MapScalarApiReference();   // UI lives at /scalar/v1
 
 app.UseAuthorization();
 app.MapControllers();
+
+// Auto-apply migrations on startup
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 app.Run();
